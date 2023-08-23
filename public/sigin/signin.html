@@ -4,14 +4,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    
     <link rel="stylesheet" href="signin.css">
   </head>
   <body>
-   <h1 style="background-color: rgba(1, 1, 121, 0.672); color: white; padding: 10px;margin-bottom: 10px;">PERSONAL BLOGS WEB</h1>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary  shup" style="background-color: #7749F8; " >
+      <div class="container-fluid">
+        <h3>PERSONAL BLOGGING WEB</h3>
+      
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="fill: rgb(21, 9, 9);"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="d-flex">
+          
+          </form>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              
+              <li class="nav-item" style="color: white;">
+                <a class="nav-link active" aria-current="page"  id="logout" href="../login/login.html" style="color: white !important;">Login</a>
+              </li>
+           
+            
+        
+           
+       
+         
+        
+        </div>
+      </div>
+    </nav>
    <header>
      <div class="main">
-          <h1>Make the most of your professional life</h1>
          
           <div class="right">
               <form onsubmit="return false">
@@ -20,10 +47,10 @@
                       <input id="fullname" type="text" placeholder="Enter your fullname">
                       <input id="email" type="text" placeholder="Email or Phone No">
                       <input id="pass" type="password" placeholder="Password">
-                      <div class="content">
+                      <!-- <div class="content">
                           <p>By clicking Agree & Join, you agree to the My Blogs <span class="blue"> User Agreement, Privacy Policy </span>, <span class="blue"> and Cookie Policy.</span> </p>
                          
-                      </div>
+                      </div> -->
                       <p class="foot"></p>
                       <button id="signUp" class="login">Agree & Join</button>
                       <p class="forget">______ or ______</p>
@@ -37,6 +64,7 @@
 
       </div>
     </header>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script type="module" src="signin.js"></script>
   </body>
 </html>

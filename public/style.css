@@ -12,10 +12,10 @@ body{
     
     }
     
-    .shup{
+    /* .shup{
         padding: 0 30px;
         background-color: #fff;
-    }
+    } */
     .logout{
         width: 30px;
         border-radius: 10px;
@@ -33,15 +33,15 @@ body{
        
     }
     .boxStyle2 {
-        background-color: #fff;
+        background-color:  rgba(222, 226, 230, 1);
         height: auto !important;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 30px !important ;
-       margin-left: 30px;
-       width: 96% !important;
+       
+        margin: 10px auto;
+        width:885px!important;
     
        
         
@@ -288,16 +288,28 @@ body{
         .btnforedit{
             height:20px !important; margin-left:550px !important
         }
-        .rounded{
-            border: 1px solid black;
+        .postArea .rounded{
+            border: transparent;
+            border-radius: 20px !important;
+            width: 870px;
+            background-color: #fff;
+           padding: 10px;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 28px
         }
         @media only screen and (max-width: 600px){
+            .column{
+                width: 94% !important;
+                margin: 0px !important;
+            }
             .boxStyle3{
                 display: none;
             }
     
             .boxStyle2{
-                width: 92% !important;
+                width: auto !important;
             }
             .btnforedit{
                 margin-left:90px !important
@@ -318,6 +330,13 @@ body{
         width: 300px ;
         margin-left: 6px;
     }
-    
+    .postArea .rounded{
+        width: auto !important;
+    }
+
+    .postArea{
+
+       margin-left: -33px;
+    }
     
         }

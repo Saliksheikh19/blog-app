@@ -1,12 +1,12 @@
 import {auth, onAuthStateChanged,collection,getDoc,addDoc,getDocs,doc,db, signOut,ref,storage , uploadBytesResumable,   getDownloadURL, deleteDoc,
     updateDoc, } from '../firebaseconfig.js'
 
-    getPosts()
+  
 
 let currentLoggedInUser;
 console.log(onAuthStateChanged)
 let postIdGlobal;
-
+getPosts()
 
 
 onAuthStateChanged(auth, (user) => {
@@ -16,7 +16,7 @@ onAuthStateChanged(auth, (user) => {
         const uid = user.uid;
         // console.log(uid)
         getUserData(uid)
-        getPosts(uid)
+       
         
         currentLoggedInUser = uid
         console.log(currentLoggedInUser)
@@ -111,24 +111,32 @@ function LogOutHandler(){
 
 async function uploadHandler() {
    
+    if(postTitleBox.value == `` || postInputBox.value == ``){
+        alert("insanoo ki trhan feilds puri kr")
+    }else if((postTitleBox.value.length < 5 ||postTitleBox.value.length > 50) || (postInputBox.value.length < 100 || postInputBox.value.length > 3000)){
+        alert(`title lenght should be between 5 - 50 character and blog lenght should be between 100 - 3000 character`)
+    }
+    
+    else{
+        const response = await addDoc(collection(db, "posts"), {
+            postTitle: postTitleBox.value,
+            postContent: postInputBox.value,
+            authorId: currentLoggedInUser,
+           
+        });
+        postTitleBox.value = ""
+        postInputBox.value= ""
+        console.log('upload fumction chl rha haii')                  
+       getPosts()
+       
+    }
 
 
- 
 
+  
+}
             
-                    const response = await addDoc(collection(db, "posts"), {
-                        postTitle: postTitleBox.value,
-                        postContent: postInputBox.value,
-                        authorId: currentLoggedInUser,
-                       
-                    });
-                    postTitleBox.value = ""
-                    postInputBox.value= ""
-                    getPosts()
-                   
-                   
-                  
-                }
+                 
                
               
                 
@@ -206,33 +214,34 @@ if(authorId === currentLoggedInUser){
 
     
     var postdata = document.createElement('div')
-    postdata.setAttribute('class', 'post my-5 bg-light rounded')
+    postdata.setAttribute('class', 'post my-5  rounded ')
 
- var postmaterial = ` <div class="authorDetails d-flex ">
- <img src=${authorDetails.profilePicture ||' ../assets/png-transparent-login-computer-icons-avatar-icon-monochrome-black-silhouette.png'} alt="" class="profilePicture">
-    <div>
-        <h2 style=" padding-top:14px;padding-left:6px; color:black;">${postTitle}</h4>
-        <h5 style="font-size: 12px; padding-top:2px;padding-left:4px; color:black;">${authorDetails?.Name }-${date}</h4>
-        
-    </div>
- 
- 
-</div>
-<div class="postData">
-    <h4  style="color:black; font-weight:bold; padding-top:10px" >
-        ${postContent}
-    </h4>
+ var postmaterial = `         
+                  
+ <div class="authorDetails d-flex ">
+
+     <img src=${authorDetails.profilePicture ||' ../assets/png-transparent-login-computer-icons-avatar-icon-monochrome-black-silhouette.png'} class="profilePicture">
+     <div>
+     <h2 style=" padding-top:14px;padding-left:6px; color:#212529; font-size: 24px; font-style: normal; font-weight: 600; line-height: normal;">${postTitle}</h4>
+     <h5 style="font-size: 12px; padding-top:2px;padding-left:4px; color:black;">${authorDetails?.Name }-${date}</h4>
+     </div>
      
-    <button onclick="editPostHandler('${postId}')" >
-    edit
-    </button>
-    <button onclick="deletePostHandler('${postId}')" >
-    delete
-    </button>
-   
+     
 
-    
-</div>`
+
+
+ </div>
+ <div class="postData" id="post-pic" >
+ <p id="post-text" class="mt-2 text-break" style="font-size:16px; font-style:normal;padding:10px; color:#6C757D;font-weight:600;">${postContent}</p>
+     <button style="border:none; background:transparent;color:#7749F8" onclick="editPostHandler('${postId}')" >
+     edit
+     </button>
+     <button style="border:none; background:transparent; color:#7749F8;"   onclick="deletePostHandler('${postId}')" >
+     delete
+     </button>
+ </div>
+  `
+
 
 
 postdata.innerHTML=postmaterial
@@ -243,6 +252,7 @@ postArea.append(postdata)
  console.log(postContent)
  postInputBox.value=""
  postTitleBox.value=""
+ console.log("get post chl rha haiiii")
 }
 
     
@@ -283,7 +293,13 @@ function editPostHandler(postId) {
 }
 window.editPostHandler = editPostHandler
 async function updateHandler(){
-   
+    if(postTitleBox.value == `` || postInputBox.value == ``){
+        alert("insanoo ki trhan feilds puri kr")
+    }else if((postTitleBox.value.length < 5 ||postTitleBox.value.length > 50) || (postInputBox.value.length < 100 || postInputBox.value.length > 3000)){
+        alert(`title lenght should be between 5 - 50 character and blog lenght should be between 100 - 3000 character`)
+    }
+    
+    else{
             
                 try {
                     const washingtonRef = doc(db, "posts", postIdGlobal);
@@ -295,18 +311,20 @@ async function updateHandler(){
                     });
                     
                   alert(`post edited sucessfully`)
-                  getPosts()
+                
                   showbtn.removeEventListener('click', updateHandler)
-                  showbtn.addEventListener('click',uploadHandler)
+               
                   postInputBox.value=""
                   postTitleBox.value=""
-                  showbtn.innerHTML="publish your blog"
+                  showbtn.innerHTML="publish blog"
+                  showbtn.addEventListener('click',uploadHandler)
+                  getPosts()
                    
                 } catch (e) {
                     console.error("Error adding document: ", e);
                 }
 
-
+ }
 
         
 }
@@ -316,6 +334,7 @@ async function deletePostHandler(postId) {
     console.log(postId, "delete button working properly")
 
     await deleteDoc(doc(db, "posts", postId));
-    alert("Your post deleted successfully")
+    alert("Your post deleted successfully");
     getPosts()
+ 
 }

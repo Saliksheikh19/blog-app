@@ -190,7 +190,7 @@ postdata.innerHTML=postmaterial
 
 
 
-postArea.prepend(postdata)
+postArea.append(postdata)
  console.log(postContent)
 
 

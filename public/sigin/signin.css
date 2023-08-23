@@ -13,9 +13,10 @@ body{
 }
 
 header{
+    
     height: auto;
     width: 100%;
-    position: relative;
+
     background: #f0f2f5;
 }
 .logo{
@@ -64,6 +65,7 @@ header .main .right form{
     flex-direction: column;
     padding: 0 12px;
     gap: 15px;
+    width: 600px;
 }
 
 form input{
@@ -294,7 +296,7 @@ span{
       }
       header .main {
           position: absolute;
-          top: 25%;
+          top: 26%;
           width: 100%;
           gap: 60px;
           left: 36%;
@@ -319,5 +321,14 @@ span{
          width: 100px;
          padding: 0px;
          margin-top: 5px;
+      }
+      .form-body{
+        width: 300px;
+      }
+      .form-body input{
+        width: 270px;
+      }
+      .form-body .login{
+        width: 250px;
       }
   }
